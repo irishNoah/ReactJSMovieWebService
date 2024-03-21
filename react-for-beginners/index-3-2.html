@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- babel js -->
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    function App() {
+      // setCounter : 이전 강의의 'modifier'과 동일한 것
+      const [counter, setCounter] = React.useState(0);
+      // 사용자 정의 함수 => 버튼 클릭 이벤트
+      const onClick = () => {
+        setCounter(counter + 1); // 숫자 변화
+      };
+
+      // 버튼 클릭할 때마다 사용자 정의함수 onClick 호출하여서 갱신 진행
+      return (
+        <div>
+          <h3>Total Clicks: {counter}</h3>
+          <button onClick={onClick}>Click me</button>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

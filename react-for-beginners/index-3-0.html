@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- babel js -->
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    let counter = 0;
+    function countUp() {
+      counter = counter + 1;
+      render();
+    }
+
+    /* Click me 버튼을 누를 때마다 render 사용자 정의함수를 활용해 숫자 갱신 진행*/
+    function render() {
+      ReactDOM.render(<Container />, root);
+    }
+
+    function Container() {
+      return (
+        <div>
+          <h3>Total Clicks: {counter}</h3>
+          <button onClick={countUp}>Click me</button>
+        </div>
+      );
+    }
+
+    render();
+  </script>
+</html>
