@@ -29,6 +29,13 @@ function App() {
         />
         <button>Add To Do</button>
       </form>
+      <hr />
+      <ul>
+        {/* map((item, index) => {item}) >>> argument = 값 // index  = 숫자 */}
+        {toDos.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
