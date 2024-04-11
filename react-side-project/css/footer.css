@@ -1,0 +1,11 @@
+footer {
+  background-color: #1b2035; /* background color */
+  color: #fff; /* font color */
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}

@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>StudyVanillaJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/navBar.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+  </head>
+
   <body>
+    <div id="nav3-container"><!-- 네비게이션바 영역 --></div>
+
     <h1>This is Irish Web Page...</h1>
 
     <form>
       <span id="msg">Your clicked Number is 0...</span>
       <button id="btn">Click!</button>
     </form>
+
+    <div id="footer-container"><!-- 푸터 영역 --></div>
   </body>
 
+  <!-- 버튼 누를 때마다 값 증가 -->
   <script>
     let counter = 0;
     const msg = document.getElementById("msg");
@@ -25,4 +37,9 @@
       () => (event.preventDefault(), controlBtnEvent())
     );
   </script>
+
+  <!-- navBar 관련 -->
+  <script src="js/navBar.js"></script>
+  <!-- footer 관련-->
+  <script src="js/footer.js"></script>
 </html>

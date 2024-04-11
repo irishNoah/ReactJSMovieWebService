@@ -1,0 +1,88 @@
+/* 참고 : https://velog.io/@dpdnjs402/kqgzpx7l */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+}
+nav {
+  width: 80%;
+  overflow: hidden;
+  height: 80px;
+  background-color: #1b2035;
+  margin: 50px auto;
+}
+
+/* 가운데 배치된 형태의 네비게이션 */
+#nav1 {
+  text-align: center;
+}
+#nav1 > ul {
+  display: inline-block;
+}
+#nav1 > ul li {
+  float: left;
+  padding: 0 30px;
+  line-height: 80px;
+}
+
+/* 로고는 왼쪽에 메뉴바는 오른쪽에 배치된 형태의 네비게이션 */
+#nav2 > a {
+  display: block; /* a태그는 글자성격 = inline */
+  float: left;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 80px;
+  padding: 0 30px;
+}
+#nav2 > ul {
+  float: right;
+}
+#nav2 > ul li {
+  float: left;
+  padding: 0 30px;
+  line-height: 80px;
+}
+
+/* 로고는 좌측, 메뉴바는 센터, 그 외적인 것은 우측에 배치된 형태의 네비게이션  */
+#nav3 {
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+#nav3 > a {
+  line-height: 80px;
+  display: block;
+  font-size: 30px;
+  font-weight: 900;
+  position: absolute;
+  left: 30px;
+}
+#nav3 > select {
+  padding: 0 20px;
+  height: 30px;
+  background-color: #1b2035;
+  color: #fff;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-15px);
+  border: 2px solid #fff;
+  border-radius: 30px;
+}
+#nav3 > ul {
+  display: inline-block;
+}
+#nav3 > ul li {
+  float: left;
+  line-height: 80px;
+  padding: 0 30px;
+}
