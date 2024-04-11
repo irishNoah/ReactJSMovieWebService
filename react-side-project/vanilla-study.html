@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>This is Irish Web Page...</h1>
+
+    <form>
+      <span id="msg">Your clicked Number is 0...</span>
+      <button id="btn">Click!</button>
+    </form>
+  </body>
+
+  <script>
+    let counter = 0;
+    const msg = document.getElementById("msg");
+    const btn = document.getElementById("btn");
+
+    const controlBtnEvent = () => {
+      counter += 1;
+      console.log("You clicked the Button!");
+      msg.innerText = `Your clicked Number is ${counter}...`;
+    };
+
+    btn.addEventListener(
+      "click",
+      () => (event.preventDefault(), controlBtnEvent())
+    );
+  </script>
+</html>
