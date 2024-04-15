@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>getShow</title>
+  </head>
+  <body>
+    <h1>받은 데이터 보여주기</h1>
+    <script>
+      // URL에서 쿼리 파라미터 가져오기
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(window.location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      // 이름 데이터 가져오기
+      var name = getUrlParameter("name");
+      if (name) {
+        document.write("<p>A 화면에서 전송된 이름: " + name + "</p>");
+      } else {
+        document.write("<p>이름 데이터가 전송되지 않았습니다.</p>");
+      }
+    </script>
+  </body>
+</html>
