@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>getShowTest</title>
+  </head>
+  <body>
+    <h1>irishNoah Get Showing Screen</h1>
+    <script>
+      const getUrlParameter = (value) => {
+        value = value.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        let regex = new RegExp("[\\?&]" + value + "=([^&#]*)");
+        let results = regex.exec(window.location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      };
+
+      // 이름 데이터 가져오기
+      let name = getUrlParameter("name");
+      if (name)
+        document.write("<p>getSend 화면에서 전송된 이름: " + name + "</p>");
+      else document.write("<p>이름 데이터가 전송되지 않았습니다.</p>");
+
+      // 전화번호 데이터 가져오기
+      let phone = getUrlParameter("phone");
+      if (phone)
+        document.write(`<p>getSend 화면에서 전송된 전화번호: ${phone}</p>`);
+      else document.write(`<p>전화번호 데이터가 전송되지 않았습니다.</p>`);
+    </script>
+  </body>
+</html>
