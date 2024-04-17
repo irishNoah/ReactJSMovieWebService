@@ -1,14 +1,31 @@
 import { useState } from "react";
 
 function App() {
-  const [counter, setValue] = useState(0);
-  const onClick = () => setValue((prev) => prev + 1);
-  console.log("render!!!");
+  const [counter, setCounter] = useState(0);
+  const onClick = () => setCounter((cnt) => cnt + 1);
+
+  const [inputVal, setInputVal] = useState("");
+  const onHandleChange = (e) => setInputVal(e.target.value);
+
+  const [liked, setLiked] = useState(true);
+  function onHandleCheck(e) {
+    setLiked(e.target.checked);
+  }
+  //const onHandleCheck = (e) => setLiked(e.target.checked);
 
   return (
     <div>
-      <h1>Click Count is {counter}</h1>
-      <button onClick={onClick}>Click this Button</button>
+      <button onClick={onClick}>Click number is {counter}!!!</button>
+      <br />
+      <br />
+      <input value={inputVal} onChange={onHandleChange} />
+      <p>Text is {inputVal}</p>
+
+      <label>
+        <input type="checkbox" checked={liked} onChange={onHandleCheck} />I
+        liked this!
+      </label>
+      <p>You {liked ? "liked" : "did not like"} programming!</p>
     </div>
   );
 }
