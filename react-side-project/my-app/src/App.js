@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <h1>This is irishNoah Web Page!</h1>
+      <h3>This is irishNoah Web Page!</h3>
       <h1>{number}</h1>
       <button onClick={onHandleClick}>Click Here!</button>
     </div>
