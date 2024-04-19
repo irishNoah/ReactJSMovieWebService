@@ -9,7 +9,11 @@ function App() {
     };
 
     window.addEventListener("resize", handleResize);
-    // No clean-up here
+
+    // Clean-up function
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []); // The effect runs only on mount
 
   return <div>Window width: {windowWidth}</div>;
