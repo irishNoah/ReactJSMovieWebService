@@ -1,20 +1,18 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function App() {
-  const [number, setNumber] = useState(0);
-  const onHandleClick = () => {
-    setNumber((bef) => bef + 1);
-  };
-  console.log("Click Button Render!");
-  useEffect(() => console.log("Render First Time Only..."), []);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  return (
-    <div>
-      <h3>This is irishNoah Web Page!</h3>
-      <h1>{number}</h1>
-      <button onClick={onHandleClick}>Click Here!</button>
-    </div>
-  );
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    // No clean-up here
+  }, []); // The effect runs only on mount
+
+  return <div>Window width: {windowWidth}</div>;
 }
 
 export default App;
