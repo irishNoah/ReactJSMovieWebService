@@ -4,7 +4,10 @@ function App() {
   const [toDo, setToDo] = useState("");
   const [toDos, setToDos] = useState([]);
 
-  const onChange = (e) => setToDo(e.target.value);
+  const onChange = (e) => {
+    setToDo(e.target.value);
+    console.log(e);
+  };
   const onSubmit = (e) => {
     e.preventDefault();
     if (toDo === "") {
