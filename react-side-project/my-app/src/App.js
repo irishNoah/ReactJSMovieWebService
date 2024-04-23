@@ -1,22 +1,30 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [toDo, setToDo] = useState("");
+  const [toDos, setToDos] = useState([]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+  const onChange = (e) => setToDo(e.target.value);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setToDos((nowToDoArray) => [toDo, ...nowToDoArray]);
+    setToDo("");
+  };
+  console.log(toDos);
 
-    window.addEventListener("resize", handleResize);
-
-    // Clean-up function
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []); // The effect runs only on mount
-
-  return <div>Window width: {windowWidth}</div>;
+  return (
+    <div>
+      <h1>My To Dos ({toDos.length})</h1>
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          onChange={onChange}
+          placeholder="Input Your TO Do List"
+        />
+        <button>Add To Do</button>
+      </form>
+    </div>
+  );
 }
 
 export default App;
