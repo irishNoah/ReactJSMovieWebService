@@ -2,16 +2,24 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [coins, setCoins] = useState("");
+  const [coins, setCoins] = useState([]);
   const [selectedCoin, setSelectedCoin] = useState(null); // 선택한 코인을 보유하고 있는 상태
 
+  // 비동기 함수를 정의하고 데이터를 가져오기
+  const getCoins = async () => {
+    try {
+      const response = await fetch("https://api.coinpaprika.com/v1/tickers");
+      const json = await response.json();
+      setCoins(json);
+      setLoading(false);
+    } catch (error) {
+      console.error("Failed to fetch coins", error);
+      setLoading(false); // 에러 발생 시에도 로딩 상태 해제
+    }
+  };
+
   useEffect(() => {
-    fetch("https://api.coinpaprika.com/v1/tickers")
-      .then((res) => res.json())
-      .then((json) => {
-        setCoins(json);
-        setLoading(false);
-      });
+    getCoins();
   }, []);
 
   // 드롭다운에서 새 코인을 선택할 때 처리하는 기능
@@ -40,10 +48,10 @@ function App() {
           {selectedCoin && ( // 선택한 코인이 있는지 확인하고 해당 코인의 세부정보를 표시
             <p>
               Selected Coin: {selectedCoin.name} <br />
-              Symbol:{selectedCoin.symbol} <br />
-              total_supply : {selectedCoin.total_supply} <br />
-              first_data_at : {selectedCoin.first_data_at} <br />
-              USD price : {selectedCoin.quotes.USD.price}
+              Symbol: {selectedCoin.symbol} <br />
+              Total Supply: {selectedCoin.total_supply} <br />
+              First Data At: {selectedCoin.first_data_at} <br />
+              USD Price: {selectedCoin.quotes.USD.price}
             </p>
           )}
         </div>
