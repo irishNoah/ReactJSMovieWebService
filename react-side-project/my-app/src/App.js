@@ -2,15 +2,14 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [coins, setCoins] = useState([]);
-  const [selectedCoin, setSelectedCoin] = useState(null); // 선택한 코인을 보유하고 있는 상태
-
-  // 비동기 함수를 정의하고 데이터를 가져오기
-  const getCoins = async () => {
+  const [movies, setMovies] = useState([]);
+  const getMovies = async () => {
     try {
-      const response = await fetch("https://api.coinpaprika.com/v1/tickers");
+      const response = await fetch(
+        `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`
+      );
       const json = await response.json();
-      setCoins(json);
+      setMovies(json.data.movies);
       setLoading(false);
     } catch (error) {
       console.error("Failed to fetch coins", error);
@@ -19,45 +18,36 @@ function App() {
   };
 
   useEffect(() => {
-    getCoins();
+    getMovies();
   }, []);
-
-  // 드롭다운에서 새 코인을 선택할 때 처리하는 기능
-  const handleSelectChange = (event) => {
-    const coinId = event.target.value; // 선택 옵션 값에서 코인 ID를 가져오기
-    const coin = coins.find((coin) => coin.id === coinId); // ID를 기준으로 선택한 코인을 찾기
-    setSelectedCoin(coin); // 선택한 코인 상태 설정
-  };
 
   return (
     <div>
-      <h1>The number of coins is {loading ? 0 : `${coins.length}`}</h1>
       {loading ? (
-        <h2>Coins Page is now loading...</h2>
+        <h1>Loading...</h1>
       ) : (
         <div>
-          <label>Choose Coin!</label>
-          <br />
-          <select onChange={handleSelectChange}>
-            {coins.map((coin) => (
-              <option key={coin.id} value={coin.id}>
-                {coin.name}
-              </option> // coin.id를 키와 값으로 사용
-            ))}
-          </select>
-          {selectedCoin && ( // 선택한 코인이 있는지 확인하고 해당 코인의 세부정보를 표시
-            <p>
-              Selected Coin: {selectedCoin.name} <br />
-              Symbol: {selectedCoin.symbol} <br />
-              Total Supply: {selectedCoin.total_supply} <br />
-              First Data At: {selectedCoin.first_data_at} <br />
-              USD Price: {selectedCoin.quotes.USD.price}
-            </p>
-          )}
+          <h1>Movie Information of IrishNoah Cinema</h1>
+          {movies.map((movie) => (
+            <div key={movie.id}>
+              <img src={movie.medium_cover_image} />
+              <h2>Title : {movie.title}</h2>
+              <h3>
+                Runtime : {movie.runtime} minutes / Rating : {movie.rating}
+              </h3>
+              <h3>Summary</h3>
+              <p>{movie.summary}</p>
+              <h3>Genre</h3>
+              <ul>
+                {movie.genres.map((g) => (
+                  <li key={g}>{g}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       )}
     </div>
   );
 }
-
 export default App;
